@@ -27,4 +27,9 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR.child('media')
 ## 
 
+#ckeditor settings
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = 'pillow'
+CKEDITOR_JQUERY_URL = 'https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
