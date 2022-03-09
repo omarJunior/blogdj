@@ -3,3 +3,4 @@ blog/secret.json
 #
 blog/applications/users/migrations/*
 env
+media
