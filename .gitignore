@@ -1,6 +1,13 @@
 # git ignore
 blog/secret.json
 #
-blog/applications/users/migrations/*
-env
+*/__pycache__/*
+__pycache__
+*.pyc
+migrations
 media
+.DS_Store
+*.sqlite3
+env
+old_icons
+uploads
