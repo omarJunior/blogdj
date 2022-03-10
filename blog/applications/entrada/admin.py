@@ -14,7 +14,7 @@ class EntryAdmin(admin.ModelAdmin):
     list_display = (
         'user',
         'category',
-        'tag',
+        'nombres_tag',
         'title',
         'resume',
         'content',
@@ -22,15 +22,16 @@ class EntryAdmin(admin.ModelAdmin):
         'image',
         'portada',
         'in_home',
-        'slug',
     )
     search_fields = ('user', 'category',)
     
     #metodo en el admin
-    def tag(self, obj):
+    def nombres_tag(self, obj):
+        name = ""
         if obj.tag:
             for i in obj.tag.all():
-                return i.name
+                name = name + " " + i.name
+            return name
         return ""
 
 admin.site.register(Category, CategoryAdmin)
