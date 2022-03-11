@@ -15,13 +15,13 @@ class EntryManager(models.Manager):
         #devuelve las ultimas seis entradas recientes del home
         return self.filter(public=True).order_by('-created')[:6]
 
-    def buscar_entrada(self, kword, categoria=None):
-        if len(categoria) > 0 or categoria is not None:
-           return self.filter(
-               category__short_name = categoria,
-               title__icontains = kword,
-               public = True
-           ).order_by('-created')
+    def buscar_entrada(self, kword, categoria):
+        if len(categoria) > 0:
+            return self.filter(
+                category__short_name = categoria,
+                title__icontains = kword,
+                public = True
+            ).order_by('-created')
         else:
             return self.filter(
                title__icontains = kword,

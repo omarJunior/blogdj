@@ -8,12 +8,17 @@ from .models import Category, Tag, Entry
 class EntryListView(ListView):
     template_name = "entrada/lista.html"
     context_object_name = "entradas"
-    paginate_by = 10
+    paginate_by = 5
+
+    #pasarle variables al html con el contexto
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['categorias'] = Category.objects.all()
+        return context
 
     def get_queryset(self):
         kword= self.request.GET.get('kword', '')
         categoria = self.request.GET.get('categoria', '')
         #consulta de busqueda
-        resultado = Entry.objects.buscar_entrada()
-        print(resultado)
+        resultado = Entry.objects.buscar_entrada(kword, categoria)
         return resultado

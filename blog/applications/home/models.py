@@ -33,11 +33,11 @@ class Contact(TimeStampedModel):
     "Modelo para contacto"
     full_name = models.CharField(verbose_name="Nombres", max_length=60)
     email = models.EmailField(verbose_name="Email de contacto")
-    message = models.TextField()
+    message = models.TextField(verbose_name="Mensaje")
 
     class Meta:
         verbose_name = "Contacto"
-        verbose_name_plural = "Mensajes"
+        verbose_name_plural = "Contactos"
 
     def __str__(self):
         return self.full_name

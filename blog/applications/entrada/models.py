@@ -24,7 +24,7 @@ class Tag(TimeStampedModel):
 
     class Meta:
         verbose_name = "Etiqueta"
-        verbose_name_plural = "Tags"
+        verbose_name_plural = "Etiquetas"
     
     def __str__(self):
         return self.name

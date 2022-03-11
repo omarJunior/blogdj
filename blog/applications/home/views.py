@@ -11,7 +11,8 @@ from django.views.generic import (
 
 from applications.entrada.models import Entry
 from applications.home.models import Home
-from .forms import SuscribersForm
+
+from .forms import SuscribersForm, ConctactForm
 
 class HomePageView(TemplateView):
     template_name = "home/index.html"
@@ -34,3 +35,8 @@ class HomePageView(TemplateView):
 class SuscriberCreateView(CreateView):
     form_class = SuscribersForm
     success_url = reverse_lazy("home_app:index")
+
+class ContactCreateView(CreateView):
+    form_class = ConctactForm
+    success_url = reverse_lazy("home_app:index")
+
