@@ -35,6 +35,30 @@ class UserRegisterForm(forms.ModelForm):
             'genero',
             'date_birth',
         )
+        #personalizacion a campos del modelo
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'placeholder': "Correo electronico..."
+                }
+            ),
+            'full_name': forms.TextInput(
+                attrs={
+                    'placeholder': "Nombres completo..."
+                }
+            ),
+            'ocupation': forms.TextInput(
+                attrs={
+                    'placeholder': "Ocupacion..."
+                }
+            ),
+            'date_birth': forms.DateInput(
+                attrs={
+                    'type': 'date'
+                }
+            ),
+            
+        }
     
     def clean_password2(self):
         if self.cleaned_data['password1'] != self.cleaned_data['password2']:
@@ -45,9 +69,9 @@ class LoginForm(forms.Form):
     email = forms.CharField(
         label='E-mail',
         required=True,
-        widget=forms.TextInput(
+        widget=forms.EmailInput(
             attrs={
-                'placeholder': 'Correo Electronico',
+                'placeholder': 'Ingrese su correo...',
             }
         )
     )
@@ -56,7 +80,7 @@ class LoginForm(forms.Form):
         required=True,
         widget=forms.PasswordInput(
             attrs={
-                'placeholder': 'contraseña'
+                'placeholder': 'Ingrese su contraseña...'
             }
         )
     )

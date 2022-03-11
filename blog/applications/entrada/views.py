@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from .models import Category, Tag, Entry
 
 # Create your views here.
@@ -22,3 +22,7 @@ class EntryListView(ListView):
         #consulta de busqueda
         resultado = Entry.objects.buscar_entrada(kword, categoria)
         return resultado
+
+class EntryDetailView(DetailView):
+    template_name = "entrada/detail.html"   
+    model = Entry
