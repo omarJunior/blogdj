@@ -11,13 +11,6 @@ urlpatterns = [
         views.UserRegisterView.as_view(),
         name='user-register',
     ),
-
-    path(
-        'update-user/<pk>/',
-        views.UpdateDatosView.as_view(),
-        name='update-user'
-    ),
-
     path(
         'login/', 
         views.LoginUser.as_view(),
@@ -32,5 +25,10 @@ urlpatterns = [
         'update/', 
         views.UpdatePasswordView.as_view(),
         name='user-update',
+    ),
+    path(
+        'update-user/<pk>/',
+        views.UpdateDatosView.as_view(),
+        name='update-user'
     ),
 ]
