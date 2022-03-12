@@ -65,6 +65,41 @@ class UserRegisterForm(forms.ModelForm):
             self.add_error('password2', 'Las contraseñas no son iguales')
 
 
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'full_name',
+            'ocupation',
+            'genero',
+            'date_birth',
+        )
+        #personalizacion a campos del modelo
+        widgets = {
+            'email': forms.EmailInput(
+                attrs={
+                    'placeholder': "Correo electronico..."
+                }
+            ),
+            'full_name': forms.TextInput(
+                attrs={
+                    'placeholder': "Nombres completo..."
+                }
+            ),
+            'ocupation': forms.TextInput(
+                attrs={
+                    'placeholder': "Ocupacion..."
+                }
+            ),
+            'date_birth': forms.DateInput(
+                attrs={
+                    'type': 'date'
+                }
+            ),
+            
+        }
+
 class LoginForm(forms.Form):
     email = forms.CharField(
         label='E-mail',

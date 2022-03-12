@@ -7,7 +7,7 @@ from django.http import HttpResponseRedirect
 
 from django.views.generic import (
     View,
-    CreateView
+    UpdateView
 )
 
 from django.views.generic.edit import (
@@ -18,6 +18,7 @@ from .forms import (
     UserRegisterForm, 
     LoginForm,
     UpdatePasswordForm,
+    UserUpdateForm,
 )
 #
 from .models import User
@@ -42,12 +43,18 @@ class UserRegisterView(FormView):
         # enviar el codigo al email del user
         return super(UserRegisterView, self).form_valid(form)
 
+#actualizar datos del usuario logeado
+class UpdateDatosView(LoginRequiredMixin, UpdateView):
+    template_name = "favoritos/update.html"
+    model = User
+    form_class = UserUpdateForm
+    success_url = reverse_lazy('favoritos_app:perfil')
 
 
 class LoginUser(FormView):
     template_name = 'users/login.html'
     form_class = LoginForm
-    success_url = reverse_lazy('home_app:index')
+    success_url = reverse_lazy('favoritos_app:perfil')
 
     def form_valid(self, form):
         user = authenticate(
