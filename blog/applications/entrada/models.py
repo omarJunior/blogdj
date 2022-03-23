@@ -2,6 +2,7 @@ from datetime import timedelta, datetime
 from django.db import models
 from django.conf import settings
 from django.template.defaultfilters import slugify
+from django.urls import reverse_lazy
 
 from model_utils.models import TimeStampedModel
 from ckeditor_uploader.fields import RichTextUploadingField
@@ -33,7 +34,7 @@ class Tag(TimeStampedModel):
         return self.name
 
 class Entry(TimeStampedModel):
-    "Modelo de entradas"
+    "Modelo de entradas o articulos"
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name="Usuarios", blank=True, null=True, on_delete=models.CASCADE)
     category = models.ForeignKey(Category, verbose_name="Categorias", blank=True, null=True, on_delete=models.CASCADE)
     tag = models.ManyToManyField(Tag)
@@ -55,6 +56,14 @@ class Entry(TimeStampedModel):
 
     def __str__(self):
         return self.title
+
+    def get_absolute_url(self):
+        return reverse_lazy(
+            'entrada_app:entry-detail',
+            kwargs = {
+                'slug': self.slug
+            }
+        )
 
     def save(self, *args, **kwargs):
         #calculamos el total de segundos de la hora actual

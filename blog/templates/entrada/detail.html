@@ -2,6 +2,23 @@
 {% extends "entrada/base_entrada.html" %}
 {% load  static %}
 
+<!-- Para el SEO -->
+{% block title %}
+    {{ object.title }}
+{% endblock title %}
+
+{% block description %}
+    <meta name="description" content={{object.resume}}>
+{% endblock description %}
+
+{% block tags %}
+    <meta name="keywords" content="
+        {% for t in object.tag.all %}
+            {{ t.name }} ,
+        {% endfor %}
+    ">
+{% endblock tags %}
+    
 {% block content %}
 
 {% include "includes/header.html" %}
@@ -24,7 +41,7 @@
         <!-- bloque llamada a la accion -->
         <div class="cell large-4">
             <div class="card" style="width: 100%;">
-                <img src="{{ object.image.urlw }}">
+                <img src="{{ object.image.url }}">
                 <div class="card-section" style="width: 100%;">
                   <form class="blog-action"  action="{% url 'favoritos_app:add-favorites' object.id %}" method="post">{% csrf_token %}
                     <button type="submit" class="button alert">Agregar a favoritos</button>
